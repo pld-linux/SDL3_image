@@ -3,37 +3,34 @@ Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL2
 Summary(pt_BR.UTF-8):	Simple DirectMedia Layer 2 - Biblioteca exemplo para carga de Imagens
 Name:		SDL2_image
 Version:	2.0.1
-Release:	1
+Release:	2
 License:	Zlib-like
 Group:		Libraries
 Source0:	http://www.libsdl.org/projects/SDL_image/release/%{name}-%{version}.tar.gz
 # Source0-md5:	d94b94555ba022fa249a53a021dc3606
+Patch0:		%{name}-libjpeg.patch
 URL:		http://www.libsdl.org/projects/SDL_image/
 BuildRequires:	SDL2-devel >= 2.0.0
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libjpeg-devel >= 8
-BuildRequires:	libpng-devel >= 2:1.5.0
+BuildRequires:	libpng-devel >= 2:1.6.0
 BuildRequires:	libtiff-devel >= 4
 BuildRequires:	libtool >= 2:2
-BuildRequires:	libwebp-devel >= 0.1.3
+BuildRequires:	libwebp-devel >= 0.6.0
 BuildRequires:	pkgconfig >= 1:0.9.0
 Requires:	SDL2 >= 2.0.0
 Suggests:	libjpeg >= 8
-%if "%(pkg-config --exists libpng16 2>/dev/null ; echo $?)" == "0"
 Suggests:	libpng >= 2:1.6.0
-%else
-Suggests:	libpng >= 2:1.5.0
-%endif
 Suggests:	libtiff >= 4
-Suggests:	libwebp >= 0.1.3
+Suggests:	libwebp >= 0.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # NOTE: libraries dlopened by sonames detected at build time:
 # libjpeg.so.8
-# libpng16.so.16/libpng15.so.15/...
+# libpng16.so.16
 # libtiff.so.5
-# libwebp.so.5
+# libwebp.so.7
 
 %description
 This is a simple library to load images of various formats as SDL2
@@ -85,6 +82,7 @@ Bibliotecas estáticas para desenvolvimento de aplicações SDL2.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
