@@ -2,32 +2,39 @@ Summary:	Simple DirectMedia Layer 2 - Sample Image Loading Library
 Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL2
 Summary(pt_BR.UTF-8):	Simple DirectMedia Layer 2 - Biblioteca exemplo para carga de Imagens
 Name:		SDL2_image
-Version:	2.0.5
+Version:	2.6.0
 Release:	1
 License:	Zlib-like
 Group:		Libraries
-Source0:	http://www.libsdl.org/projects/SDL_image/release/%{name}-%{version}.tar.gz
-# Source0-md5:	f26f3a153360a8f09ed5220ef7b07aea
+Source0:	https://github.com/libsdl-org/SDL_image/releases/download/release-%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	8e9c23d60d21aa3907737d6fcd8186bf
 Patch0:		%{name}-libjpeg.patch
-URL:		http://www.libsdl.org/projects/SDL_image/
-BuildRequires:	SDL2-devel >= 2.0.8
+Patch1:		relax-soname-pattern.patch
+URL:		https://github.com/libsdl-org/SDL_image
+BuildRequires:	SDL2-devel >= 2.0.9
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libavif-devel
 BuildRequires:	libjpeg-devel >= 8
+BuildRequires:	libjxl-devel
 BuildRequires:	libpng-devel >= 2:1.6.0
 BuildRequires:	libtiff-devel >= 4
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libwebp-devel >= 0.6.0
 BuildRequires:	pkgconfig >= 1:0.9.0
-Requires:	SDL2 >= 2.0.8
+Requires:	SDL2 >= 2.0.9
+Suggests:	libavif
 Suggests:	libjpeg >= 8
+Suggests:	libjxl
 Suggests:	libpng >= 2:1.6.0
 Suggests:	libtiff >= 4
 Suggests:	libwebp >= 0.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # NOTE: libraries dlopened by sonames detected at build time:
+# libavif.so.14
 # libjpeg.so.8
+# libjxl.so.0.6
 # libpng16.so.16
 # libtiff.so.5
 # libwebp.so.7
@@ -52,7 +59,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe do rozwijania aplikacji używających SDL2
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos de inclusão para desenvolvimento de aplicações SDL2
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	SDL2-devel >= 2.0.8
+Requires:	SDL2-devel >= 2.0.9
 
 %description devel
 Header files and more to develop SDL2_image applications.
@@ -83,6 +90,7 @@ Bibliotecas estáticas para desenvolvimento de aplicações SDL2.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -90,15 +98,22 @@ Bibliotecas estáticas para desenvolvimento de aplicações SDL2.
 %{__autoconf}
 %{__automake}
 %configure \
+	--disable-stb-image \
+	--enable-avif \
+	--enable-avif-shared \
 	--enable-bmp \
 	--enable-gif \
 	--enable-jpg \
 	--enable-jpg-shared \
+	--enable-jxl \
+	--enable-jxl-shared \
 	--enable-lbm \
 	--enable-pcx \
 	--enable-png \
 	--enable-png-shared \
 	--enable-pnm \
+	--enable-qoi \
+	--enable-svg \
 	--enable-tga \
 	--enable-tif \
 	--enable-tif-shared \
@@ -130,7 +145,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc CHANGES.txt COPYING.txt README.txt
+%doc CHANGES.txt LICENSE.txt README.txt
 %attr(755,root,root) %{_bindir}/sdl2show
 %attr(755,root,root) %{_libdir}/libSDL2_image-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libSDL2_image-2.0.so.0
@@ -138,6 +153,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libSDL2_image.so
+%{_libdir}/cmake/SDL2_image
 %{_includedir}/SDL2/SDL_image.h
 %{_pkgconfigdir}/SDL2_image.pc
 

@@ -1,0 +1,48 @@
+From e77f5ac322b24fbcde94a55ed99ba61755c983eb Mon Sep 17 00:00:00 2001
+From: Jan Palus <jpalus@fastmail.com>
+Date: Sun, 10 Jul 2022 18:02:46 +0200
+Subject: [PATCH] autotools: relax soname pattern for dynamic loading
+
+SDL makes assumption that each dynamically loaded library must have
+SONAME matching pattern <libname>.so.<digit>+ hence it discards any file
+that has two (or more) digits after ".so". in practice however SONAME
+might be in the form of ie <libname>.so.<major>.<minor>.
+
+as a solution keep requirement for dynamically loaded files to be named
+<libname>.so.* but consider all the possibilities and prefer the shortest
+one.
+
+Fixes: #289
+From: libsdl-org/SDL#5901
+---
+ configure.ac | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/configure.ac b/configure.ac
+index ca1013a..9cff1e7 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -67,6 +67,11 @@ AC_CHECK_TOOL(RC,[windres],[:])
+ AC_PROG_INSTALL
+ AC_PROG_MAKE_SET
+ PKG_PROG_PKG_CONFIG
++AC_PROG_AWK
++
++if test -z "$AWK"; then
++    AC_MSG_ERROR([*** Required awk tool not found!])
++fi
+ 
+ case "$host" in
+     *-*-beos*)
+@@ -132,7 +137,7 @@ find_lib()
+         host_lib_path="$ac_default_prefix/$base_libdir $ac_default_prefix/$base_bindir /usr/$base_libdir /usr/local/$base_libdir"
+     fi
+     for path in $env_lib_path $gcc_bin_path $gcc_lib_path $host_lib_path; do
+-        lib=[`ls -- $path/$1 2>/dev/null | sed -e '/\.so\..*\./d' -e 's,.*/,,' | sort | tail -1`]
++        lib=[`ls -- $path/$1 2>/dev/null | sed -e 's,.*/,,' | $AWK '{print length() " " $0;}' | sort -n -r | tail -1 | sed 's/^[0-9]\+ //'`]
+         if test x$lib != x; then
+             echo $lib
+             return
+-- 
+2.37.0
+

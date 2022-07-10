@@ -1,14 +1,14 @@
---- SDL2_image-2.0.1/configure.in.orig	2016-01-03 06:52:28.000000000 +0100
-+++ SDL2_image-2.0.1/configure.in	2017-07-16 09:18:58.433858494 +0200
+--- SDL2_image-2.0.1/configure.ac.orig	2016-01-03 06:52:28.000000000 +0100
++++ SDL2_image-2.0.1/configure.ac	2017-07-16 09:18:58.433858494 +0200
 @@ -180,10 +180,7 @@
-                 jpg_lib=[`find_lib "libjpeg*.dll"`]
-                 ;;
-             *)
--                jpg_lib=[`find_lib "libjpeg[0-9]*.so.*"`]
--                if test x$jpg_lib = x; then
--                    jpg_lib=[`find_lib "libjpeg.so.*"`]
--                fi
-+                jpg_lib=[`find_lib "libjpeg.so.*"`]
-                 ;;
-         esac
-     elif test x$enable_jpg = xyes; then
+                     jpg_lib=[`find_lib "libjpeg*.dll"`]
+                     ;;
+                 *)
+-                    jpg_lib=[`find_lib "libjpeg[0-9]*.so.*"`]
+-                    if test x$jpg_lib = x; then
+-                        jpg_lib=[`find_lib "libjpeg.so.*"`]
+-                    fi
++                    jpg_lib=[`find_lib "libjpeg.so.*"`]
+                     ;;
+             esac
+         else
