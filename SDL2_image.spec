@@ -1,3 +1,8 @@
+#
+# Conditional build:
+%bcond_without	avif		# AV1 Image File Format support
+%bcond_without	jxl		# JPEG XL support
+
 Summary:	Simple DirectMedia Layer 2 - Sample Image Loading Library
 Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL2
 Summary(pt_BR.UTF-8):	Simple DirectMedia Layer 2 - Biblioteca exemplo para carga de Imagens
@@ -14,18 +19,19 @@ URL:		https://github.com/libsdl-org/SDL_image
 BuildRequires:	SDL2-devel >= 2.0.9
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libavif-devel
+%{?with_avif:BuildRequires:	libavif-devel}
 BuildRequires:	libjpeg-devel >= 8
-BuildRequires:	libjxl-devel
+%{?with_jxl:BuildRequires:	libjxl-devel}
 BuildRequires:	libpng-devel >= 2:1.6.0
 BuildRequires:	libtiff-devel >= 4
 BuildRequires:	libtool >= 2:2
 BuildRequires:	libwebp-devel >= 0.6.0
 BuildRequires:	pkgconfig >= 1:0.9.0
+BuildRequires:	rpmbuild(macros) >= 1.527
 Requires:	SDL2 >= 2.0.9
-Suggests:	libavif
+%{?with_avif:Suggests:	libavif}
 Suggests:	libjpeg >= 8
-Suggests:	libjxl
+%{?with_jxl:Suggests:	libjxl}
 Suggests:	libpng >= 2:1.6.0
 Suggests:	libtiff >= 4
 Suggests:	libwebp >= 0.6.0
@@ -99,13 +105,13 @@ Bibliotecas estáticas para desenvolvimento de aplicações SDL2.
 %{__automake}
 %configure \
 	--disable-stb-image \
-	--enable-avif \
+	%{__enable_disable avif} \
 	--enable-avif-shared \
 	--enable-bmp \
 	--enable-gif \
 	--enable-jpg \
 	--enable-jpg-shared \
-	--enable-jxl \
+	%{__enable_disable jxl} \
 	--enable-jxl-shared \
 	--enable-lbm \
 	--enable-pcx \
