@@ -7,12 +7,12 @@ Summary:	Simple DirectMedia Layer 2 - Sample Image Loading Library
 Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL2
 Summary(pt_BR.UTF-8):	Simple DirectMedia Layer 2 - Biblioteca exemplo para carga de Imagens
 Name:		SDL2_image
-Version:	2.6.1
+Version:	2.6.2
 Release:	1
 License:	Zlib-like
 Group:		Libraries
 Source0:	https://github.com/libsdl-org/SDL_image/releases/download/release-%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	18fa0dd2b3652523291d92296299a3fd
+# Source0-md5:	35da7c375b1c187b0f684c1c83b3b9c3
 Patch0:		%{name}-libjpeg.patch
 Patch1:		relax-soname-pattern.patch
 URL:		https://github.com/libsdl-org/SDL_image
