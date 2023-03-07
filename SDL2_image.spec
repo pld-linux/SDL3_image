@@ -8,7 +8,7 @@ Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL2
 Summary(pt_BR.UTF-8):	Simple DirectMedia Layer 2 - Biblioteca exemplo para carga de Imagens
 Name:		SDL2_image
 Version:	2.6.3
-Release:	1
+Release:	2
 License:	Zlib-like
 Group:		Libraries
 Source0:	https://github.com/libsdl-org/SDL_image/releases/download/release-%{version}/%{name}-%{version}.tar.gz
@@ -38,9 +38,9 @@ Suggests:	libwebp >= 0.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # NOTE: libraries dlopened by sonames detected at build time:
-# libavif.so.14
+# libavif.so.15
 # libjpeg.so.8
-# libjxl.so.0.6
+# libjxl.so.0.8
 # libpng16.so.16
 # libtiff.so.5
 # libwebp.so.7
