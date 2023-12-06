@@ -2,6 +2,7 @@
 # Conditional build:
 %bcond_without	avif		# AV1 Image File Format support
 %bcond_without	jxl		# JPEG XL support
+%bcond_without	static_libs	# static library
 
 Summary:	Simple DirectMedia Layer 2 - Sample Image Loading Library
 Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL2
@@ -104,6 +105,7 @@ Bibliotecas estáticas para desenvolvimento de aplicações SDL2.
 %{__autoconf}
 %{__automake}
 %configure \
+	%{__enable_disable static_libs static} \
 	--disable-stb-image \
 	%{__enable_disable avif} \
 	--enable-avif-shared \
@@ -163,6 +165,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/SDL2/SDL_image.h
 %{_pkgconfigdir}/SDL2_image.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libSDL2_image.a
+%endif
