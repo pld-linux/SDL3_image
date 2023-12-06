@@ -8,19 +8,18 @@ Summary:	Simple DirectMedia Layer 2 - Sample Image Loading Library
 Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL2
 Summary(pt_BR.UTF-8):	Simple DirectMedia Layer 2 - Biblioteca exemplo para carga de Imagens
 Name:		SDL2_image
-Version:	2.6.3
-Release:	2
+Version:	2.8.0
+Release:	1
 License:	Zlib-like
 Group:		Libraries
 Source0:	https://github.com/libsdl-org/SDL_image/releases/download/release-%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	191c3eb49cc2dce30abff81398a92e81
+# Source0-md5:	7af4d39a5e6579715a996fd0dbd4b910
 Patch0:		%{name}-libjpeg.patch
-Patch1:		relax-soname-pattern.patch
 URL:		https://github.com/libsdl-org/SDL_image
 BuildRequires:	SDL2-devel >= 2.0.9
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?with_avif:BuildRequires:	libavif-devel}
+%{?with_avif:BuildRequires:	libavif-devel >= 0.9.3}
 BuildRequires:	libjpeg-devel >= 8
 %{?with_jxl:BuildRequires:	libjxl-devel}
 BuildRequires:	libpng-devel >= 2:1.6.0
@@ -30,7 +29,7 @@ BuildRequires:	libwebp-devel >= 0.6.0
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.527
 Requires:	SDL2 >= 2.0.9
-%{?with_avif:Suggests:	libavif}
+%{?with_avif:Suggests:	libavif >= 0.9.3}
 Suggests:	libjpeg >= 8
 %{?with_jxl:Suggests:	libjxl}
 Suggests:	libpng >= 2:1.6.0
@@ -97,7 +96,6 @@ Bibliotecas estáticas para desenvolvimento de aplicações SDL2.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
