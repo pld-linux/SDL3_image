@@ -1,6 +1,6 @@
---- SDL2_image-2.0.1/configure.ac.orig	2016-01-03 06:52:28.000000000 +0100
-+++ SDL2_image-2.0.1/configure.ac	2017-07-16 09:18:58.433858494 +0200
-@@ -180,10 +180,7 @@
+--- SDL2_image-2.8.3/configure.ac.orig	2024-12-21 18:43:41.349424582 +0100
++++ SDL2_image-2.8.3/configure.ac	2024-12-21 18:47:22.204894772 +0100
+@@ -411,10 +411,7 @@ if test x$enable_jpg = xyes; then
                      jpg_lib=[`find_lib "libjpeg*.dll"`]
                      ;;
                  *)
@@ -11,4 +11,4 @@
 +                    jpg_lib=[`find_lib "libjpeg.so.*"`]
                      ;;
              esac
-         else
+ 
