@@ -8,13 +8,13 @@ Summary:	Simple DirectMedia Layer 2 - Sample Image Loading Library
 Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL2
 Summary(pt_BR.UTF-8):	Simple DirectMedia Layer 2 - Biblioteca exemplo para carga de Imagens
 Name:		SDL2_image
-Version:	2.8.4
+Version:	2.8.8
 Release:	1
 License:	Zlib-like
 Group:		Libraries
 #Source0Download: https://github.com/libsdl-org/SDL_image/releases
 Source0:	https://github.com/libsdl-org/SDL_image/releases/download/release-%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	2a0ccd531414762e24bda81ef4e39006
+# Source0-md5:	ec3e249988c0ff1ab4e828e7edc5d39c
 Patch0:		%{name}-libjpeg.patch
 URL:		https://github.com/libsdl-org/SDL_image
 BuildRequires:	SDL2-devel >= 2.0.9
@@ -39,23 +39,24 @@ Suggests:	libwebp >= 0.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # NOTE: libraries dlopened by sonames detected at build time:
-# libavif.so.15
+# libavif.so.16
 # libjpeg.so.8
-# libjxl.so.0.8
+# libjxl.so.0.11
 # libpng16.so.16
 # libtiff.so.5
 # libwebp.so.7
 
 %description
-This is a simple library to load images of various formats as SDL2
-surfaces. This library currently supports BMP, GIF, JPEG, LBM, PCX,
-PNG, PNM (PBM/PGM/PPM), TGA, TIFF, WebP, XCF and XPM formats.
+This is a simple library to load images of various formats as SDL3
+surfaces. This library currently supports AVIF, BMP, GIF, JPEG,
+JPEG-XL, LBM, PCX, PNG, PNM (PBM/PGM/PPM), QOI, TGA, TIFF, WebP, XCF
+and XPM formats.
 
 %description -l pl.UTF-8
 Jest to prosta biblioteka służąca do ładowania różnego formatu
-obrazków jako powierzchni SDL2. W chwili obecnej biblioteka obsługuje
-następujące formaty: BMP, GIF, JPEG, LBM, PCX, PNG, PNM (PBM/PGM/PPM),
-TGA, TIFF, WebP, XCF oraz XPM.
+obrazków jako powierzchni SDL3. W chwili obecnej biblioteka obsługuje
+następujące formaty: AVIF, BMP, GIF, JPEG, JPEG-XL, LBM, PCX, PNG, PNM
+(PBM/PGM/PPM), QOI, TGA, TIFF, WebP, XCF oraz XPM.
 
 %description -l pt_BR.UTF-8
 Simple DirectMedia Layer 2 - Biblioteca exemplo para carga de Imagens.
