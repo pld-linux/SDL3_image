@@ -7,13 +7,13 @@ Summary:	Simple DirectMedia Layer 3 - Sample Image Loading Library
 Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL3
 Summary(pt_BR.UTF-8):	Simple DirectMedia Layer 3 - Biblioteca exemplo para carga de Imagens
 Name:		SDL3_image
-Version:	3.2.4
+Version:	3.4.2
 Release:	1
 License:	Zlib-like
 Group:		Libraries
 #Source0Download: https://github.com/libsdl-org/SDL_image/releases
 Source0:	https://github.com/libsdl-org/SDL_image/releases/download/release-%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	42d93037a22c5a5bb3b1eacbef072b2f
+# Source0-md5:	b3b27d439bf58946efb92b4d1cb1d951
 URL:		https://github.com/libsdl-org/SDL_image
 BuildRequires:	SDL3-devel >= 3.2.6
 BuildRequires:	cmake >= 3.16
@@ -21,7 +21,7 @@ BuildRequires:	cmake >= 3.16
 BuildRequires:	libjpeg-devel >= 8
 %{?with_jxl:BuildRequires:	libjxl-devel}
 BuildRequires:	libpng-devel >= 2:1.6.0
-BuildRequires:	libtiff-devel >= 4
+BuildRequires:	libtiff-devel >= 4.5
 BuildRequires:	libwebp-devel >= 0.6.0
 BuildRequires:	pkgconfig >= 1:0.9.0
 BuildRequires:	rpmbuild(macros) >= 1.605
@@ -30,7 +30,7 @@ Requires:	SDL3 >= 3.2.6
 Suggests:	libjpeg >= 8
 %{?with_jxl:Suggests:	libjxl}
 Suggests:	libpng >= 2:1.6.0
-Suggests:	libtiff >= 4
+Suggests:	libtiff >= 4.5
 Suggests:	libwebp >= 0.6.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -39,7 +39,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # libjpeg.so.8
 # libjxl.so.0.11
 # libpng16.so.16
-# libtiff.so.5
+# libtiff.so.6
 # libwebp.so.7
 # libwebpdemux.so.2
 
@@ -109,19 +109,26 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES.txt LICENSE.txt README.md
 %attr(755,root,root) %{_bindir}/sdl3-showanim
 %attr(755,root,root) %{_bindir}/sdl3-showimage
-%attr(755,root,root) %{_libdir}/libSDL3_image.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libSDL3_image.so.0
+%{_libdir}/libSDL3_image.so.*.*.*
+%ghost %{_libdir}/libSDL3_image.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libSDL3_image.so
+%{_libdir}/libSDL3_image.so
 %{_libdir}/cmake/SDL3_image
 %{_includedir}/SDL3_image
 %{_pkgconfigdir}/sdl3-image.pc
-%{_mandir}/man3/IMG_Animation.3type*
+%{_mandir}/man3/IMG_AddAnimation*.3*
+%{_mandir}/man3/IMG_Animation*.3type*
+%{_mandir}/man3/IMG_CloseAnimation*.3*
+%{_mandir}/man3/IMG_CreateAnimatedCursor.3*
+%{_mandir}/man3/IMG_CreateAnimation*.3*
 %{_mandir}/man3/IMG_FreeAnimation.3*
+%{_mandir}/man3/IMG_GetAnimation*.3*
+%{_mandir}/man3/IMG_GetClipboardImage.3*
 %{_mandir}/man3/IMG_Load*.3*
 %{_mandir}/man3/IMG_Read*.3*
+%{_mandir}/man3/IMG_ResetAnimation*.3*
 %{_mandir}/man3/IMG_Save*.3*
 %{_mandir}/man3/IMG_Version.3*
 %{_mandir}/man3/IMG_is*.3*
