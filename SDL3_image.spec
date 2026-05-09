@@ -7,13 +7,13 @@ Summary:	Simple DirectMedia Layer 3 - Sample Image Loading Library
 Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL3
 Summary(pt_BR.UTF-8):	Simple DirectMedia Layer 3 - Biblioteca exemplo para carga de Imagens
 Name:		SDL3_image
-Version:	3.4.2
+Version:	3.4.4
 Release:	1
 License:	Zlib-like
 Group:		Libraries
 #Source0Download: https://github.com/libsdl-org/SDL_image/releases
 Source0:	https://github.com/libsdl-org/SDL_image/releases/download/release-%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	b3b27d439bf58946efb92b4d1cb1d951
+# Source0-md5:	4628ad1d0e61a542a4e8ac85ab46a5a1
 URL:		https://github.com/libsdl-org/SDL_image
 BuildRequires:	SDL3-devel >= 3.2.6
 BuildRequires:	cmake >= 3.16
