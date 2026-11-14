@@ -7,13 +7,13 @@ Summary:	Simple DirectMedia Layer 3 - Sample Image Loading Library
 Summary(pl.UTF-8):	Przykładowa biblioteka do ładowania obrazków dla SDL3
 Summary(pt_BR.UTF-8):	Simple DirectMedia Layer 3 - Biblioteca exemplo para carga de Imagens
 Name:		SDL3_image
-Version:	3.4.4
+Version:	3.4.8
 Release:	1
 License:	Zlib-like
 Group:		Libraries
 #Source0Download: https://github.com/libsdl-org/SDL_image/releases
 Source0:	https://github.com/libsdl-org/SDL_image/releases/download/release-%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	4628ad1d0e61a542a4e8ac85ab46a5a1
+# Source0-md5:	a9af5aa5bd833759b5f6a1f6f47280a6
 URL:		https://github.com/libsdl-org/SDL_image
 BuildRequires:	SDL3-devel >= 3.2.6
 BuildRequires:	cmake >= 3.16
@@ -37,7 +37,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # NOTE: libraries dlopened by sonames detected at build time:
 # libavif.so.16
 # libjpeg.so.8
-# libjxl.so.0.11
+# libjxl.so.0.13
 # libpng16.so.16
 # libtiff.so.6
 # libwebp.so.7
@@ -63,8 +63,8 @@ Summary:	Header files and more to develop SDL3_image applications
 Summary(pl.UTF-8):	Pliki nagłówkowe do rozwijania aplikacji używających SDL3_image
 Summary(pt_BR.UTF-8):	Bibliotecas e arquivos de inclusão para desenvolvimento de aplicações SDL3
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
-Requires:	SDL3-devel >= 3.2.6
+Requires:	%{name}%{?_isa} = %{version}-%{release}
+Requires:	SDL3-devel%{?_isa} >= 3.2.6
 
 %description devel
 Header files and more to develop SDL3_image applications.
